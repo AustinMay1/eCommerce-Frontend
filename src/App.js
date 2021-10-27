@@ -8,9 +8,11 @@ import Home from './components/pages/home/home';
 import Cart from './components/pages/cart/cart';
 import Login from './components/pages/login/login';
 import Account from './components/pages/account/account';
+import Register from './components/pages/register/register';
 
 //elements
 import Navbar from './components/elements/navbar/navbar';
+
 
 function App() {
   const [user, setUser] = useState(null);
@@ -36,6 +38,9 @@ function App() {
         
 
         <Route path="/account" component={Account} />
+
+
+        <Route path="/register" component={Register} />
          
 
 

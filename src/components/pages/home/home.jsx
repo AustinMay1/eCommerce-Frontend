@@ -1,6 +1,7 @@
 import react from 'react';
 
 const Home = () => {
+    
     return (
         <div className="m-5 container">
                 <h1></h1>

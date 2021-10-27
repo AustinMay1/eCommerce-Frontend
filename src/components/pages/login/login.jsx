@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import useForm from '../../../hooks/useForm';
 import useLogin from '../../../hooks/useLogin';
+import Register from '../register/register';
 
 const Login = () => {
     const history = useHistory();

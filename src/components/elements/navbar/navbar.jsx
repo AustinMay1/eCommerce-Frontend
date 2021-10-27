@@ -42,7 +42,20 @@ const Navbar = ({user}) => {
                                 Shopping Cart
                             </NavLink>
                         </li>
+                        <form className="d-flex" method="get" action={"/"}>
+            <input
+                className="form-control ms-2"
+                type="search"
+                placeholder="Search Products"
+                aria-label="Search"
                 
+            />
+           
+            <button className="btn btn-outline-success" type="submit">
+                Search
+            </button>
+         
+            </form> 
         
         </React.Fragment>
 }
