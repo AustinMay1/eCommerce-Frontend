@@ -3,7 +3,12 @@ import React from 'react';
 
 const Cart = () => {
     return (
-        <h1>Your Shopping Cart</h1>
+        <div class='cart'>
+                    <h1>Your cart:</h1>
+                    
+                    <h2>Total price: </h2>
+                    <button class="btn btn-primary">Checkout</button>
+                    </div>
     )
 }
 
