@@ -21,15 +21,9 @@ class App extends Component {
     super(props);
     this.state = {
       user: null,
+      shoppingCartItem: {},
       searchTerm: '',
-      searchResults: [
-        // {
-        //   name: '',
-        //   description: '',
-        //   price: 0,
-        //   category: ''
-        // }
-      ]
+      searchResults: []
     };
   }
   componentDidMount() {
@@ -39,15 +33,53 @@ class App extends Component {
       this.setState({user});
     } catch {}
   }
-  setSearch = async (searchTerm) => {
+  getProducts = async () => {
+    try{
+      let response = await axios.get(`https://localhost:44394/api/products`);
+      this.setState({
+        searchResults: response.data
+      })
+  }
+  catch (ex){
+      console.log('Error in getProducts API call', ex);
+  }
+}
+  addToCart = async (productId, userId, quantity) => {
+    try{
+      this.setState({
+        shoppingCartItem: {
+          userId: userId,
+          productId: productId,
+          quantity: quantity
+        }
+      })
+      await axios.post(`https://localhost:44394/api/shoppingcart`, this.state.shoppingCartItem);
+  }
+  catch (ex){
+      console.log('Error in addToCart API call', ex);
+  }
+  }
+  setSearchName = async (searchTerm) => {
     try{
         let response = await axios.get(`https://localhost:44394/api/search/name/${searchTerm}`);
         this.setState({
-          searchResults: response
+          searchResults: response.data
         })
     }
     catch (ex){
-        console.log('Error in setSearch API call', ex);
+        console.log('Error in setSearchName API call', ex);
+    }
+  }
+
+  setSearchCategory = async (searchTerm) => {
+    try{
+        let response = await axios.get(`https://localhost:44394/api/search/category/${searchTerm}`);
+        this.setState({
+          searchResults: response.data
+        })
+    }
+    catch (ex){
+        console.log('Error in setSearchCategory API call', ex);
     }
   }
   // code for using using hook
@@ -66,7 +98,7 @@ class App extends Component {
         
         <Switch>
 
-          <Route path ="/home" render={props => <SearchBar {...props} searchTerm={this.state.searchTerm} setSearch={this.setSearch} />}/>
+          <Route path ="/home" render={props => <SearchBar {...props} user={this.state.user} addToCart={this.addToCart} getProducts={this.getProducts} searchTerm={this.state.searchTerm} setSearchName={this.setSearchName} setSearchCategory={this.setSearchCategory} searchResults={this.state.searchResults}/>}/>
           
 
           <Route path="/cart" component={Cart} />
@@ -92,4 +124,3 @@ class App extends Component {
 // console.log(decode);
 
 export default App;
-
