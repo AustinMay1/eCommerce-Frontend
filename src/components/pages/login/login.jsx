@@ -1,8 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
-
-
 import { Link } from 'react-router-dom';
 import useForm from '../../../hooks/useForm';
 import useLogin from '../../../hooks/useLogin';
@@ -28,7 +26,7 @@ const Login = () => {
             <button type="submit" class="btn btn-primary">Submit</button>
             </form>
 
-            <p>Not registered? Register <Link to="/register">here.</Link></p>
+            <p>Sign up <Link to="/register">here.</Link></p>
         </div>
         )
 }

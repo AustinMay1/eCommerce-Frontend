@@ -4,6 +4,7 @@ const Home = () => {
     
     return (
         <div className="m-5 container">
+            
                 <h1></h1>
                 <h2>Description: </h2>
                 <h3>Price: </h3>
@@ -14,9 +15,9 @@ const Home = () => {
                     <button className="btn btn-outline-secondary">-</button>
                 </div>
                 <button className="btn btn-success">Add to cart</button>
+                </div>
                 
-                
-            </div>
+            
     )
 }
 
