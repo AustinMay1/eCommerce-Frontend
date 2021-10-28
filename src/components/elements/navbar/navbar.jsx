@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import SearchBar from '../../pages/home/searchbar/searchbar';
 
 
 const Navbar = ({user}) => {
@@ -42,20 +43,23 @@ const Navbar = ({user}) => {
                                 Shopping Cart
                             </NavLink>
                         </li>
-                        <form className="d-flex" method="get" action={"/"}>
-            <input
+                        {/* <form className="d-flex" method="get" action={"/"}> */}
+
+                
+
+            {/* <input
                 className="form-control ms-2"
                 type="search"
                 placeholder="Search Products"
                 aria-label="Search"
                 
-            />
+            /> */}
            
-            <button className="btn btn-outline-success" type="submit">
+            {/* <button className="btn btn-outline-success" type="submit">
                 Search
-            </button>
+            </button> */}
          
-            </form> 
+            {/* </form>  */}
         
         </React.Fragment>
 }
