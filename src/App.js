@@ -14,6 +14,7 @@ import Seller from './components/pages/Seller/Seller';
 //elements
 import Navbar from './components/elements/navbar/navbar';
 import SearchBar from './components/pages/home/searchbar/searchbar';
+import ShoppingCart from './components/pages/cart/shoppingcart/shoppingcart';
 
 
 class App extends Component {
@@ -23,7 +24,9 @@ class App extends Component {
       user: null,
       shoppingCartItem: {},
       searchTerm: '',
-      searchResults: []
+      searchResults: [],
+      productsInCart: [],
+      reviews: []
     };
   }
   componentDidMount() {
@@ -45,23 +48,29 @@ class App extends Component {
   }
 }
   addToCart = async (productId, userId, quantity) => {
-    try{
       this.setState({
         shoppingCartItem: {
           userId: userId,
           productId: productId,
           quantity: quantity
         }
+      }, () => {
+        this.postToCart()
       })
+  }
+  
+  postToCart = async () => {
+    try{
       await axios.post(`https://localhost:44394/api/shoppingcart`, this.state.shoppingCartItem);
+    }
+    catch (ex){
+      console.log('Error in postToCart API call', ex);
+    }
   }
-  catch (ex){
-      console.log('Error in addToCart API call', ex);
-  }
-  }
+  
   setSearchName = async (searchTerm) => {
     try{
-        let response = await axios.get(`https://localhost:44394/api/search/name/${searchTerm}`);
+        let response = await axios.get(`https://localhost:5001/api/search/name/${searchTerm}`);
         this.setState({
           searchResults: response.data
         })
@@ -82,6 +91,30 @@ class App extends Component {
         console.log('Error in setSearchCategory API call', ex);
     }
   }
+
+  getProductsInCart = async () => {
+    try{
+      let response = await axios.get(`https://localhost:44394/api/shoppingcart/${this.state.user.id}`);
+      this.setState({
+        productsInCart: response.data
+      })
+    }
+    catch (ex){
+        console.log('Error in getProductsInCart API call', ex);
+    }
+  }
+
+  deleteProductInCart = async (productId) => {
+    try{
+      await axios.delete(`https://localhost:44394/api/shoppingcart/product/${productId}/user/${this.state.user.id}`);
+      this.getProductsInCart();
+    }
+    catch (ex){
+        console.log('Error in deleteProductInCart API call', ex);
+    }
+  }
+
+
   // code for using using hook
   // const [user, setUser] = useState(null);
   // const jwt = localStorage.getItem('token');
@@ -101,7 +134,7 @@ class App extends Component {
           <Route path ="/home" render={props => <SearchBar {...props} user={this.state.user} addToCart={this.addToCart} getProducts={this.getProducts} searchTerm={this.state.searchTerm} setSearchName={this.setSearchName} setSearchCategory={this.setSearchCategory} searchResults={this.state.searchResults}/>}/>
           
 
-          <Route path="/cart" component={Cart} />
+          <Route path="/cart" render={props => <ShoppingCart {...props} getProductsInCart={this.getProductsInCart} deleteProductInCart={this.deleteProductInCart} productsInCart={this.state.productsInCart}/> } />
           
 
           <Route path="/login" component={Login} />

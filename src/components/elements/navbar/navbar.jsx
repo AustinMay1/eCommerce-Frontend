@@ -6,7 +6,7 @@ import SearchBar from '../../pages/home/searchbar/searchbar';
 const Navbar = ({user}) => {
     return(
         <>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div className="container-fluid">
         <NavLink className="navbar-brand" to="/home">
             Logo(Home Button)
@@ -34,8 +34,8 @@ const Navbar = ({user}) => {
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/account">
-                                Account
+                            <NavLink className="nav-link" to="/seller">
+                                List Product
                             </NavLink>
                         </li>
                         <li className="nav-item">
@@ -44,26 +44,13 @@ const Navbar = ({user}) => {
                             </NavLink>
                         </li>
                         {/* <form className="d-flex" method="get" action={"/"}> */}
-
-                
-
-            {/* <input
-                className="form-control ms-2"
-                type="search"
-                placeholder="Search Products"
-                aria-label="Search"
-                
-            /> */}
-           
-            {/* <button className="btn btn-outline-success" type="submit">
-                Search
-            </button> */}
-         
-            {/* </form>  */}
-        
-        </React.Fragment>
-}
-
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/logout">
+                                Logout
+                            </NavLink>
+                        </li>
+                    </React.Fragment>
+                }
         </ul>
         </div>
               
