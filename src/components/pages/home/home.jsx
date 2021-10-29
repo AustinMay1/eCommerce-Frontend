@@ -6,7 +6,7 @@ const Home = (props) => {
     
     return (
         <div className="m-5 container">
-            <SearchBar searchTerm={props.searchTerm} setSearch={props.setSearch}/>
+            <SearchBar />
             {/* <Products /> */}
             
                 <h1></h1>
