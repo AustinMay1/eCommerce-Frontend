@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { InputLabel, Select, MenuItem, Button, Grid, Typography } from '@mui/material'
 import axios from 'axios';
+import "./seller.css"
 
 class Seller extends Component {
     constructor(props) {
@@ -52,16 +52,17 @@ class Seller extends Component {
 
     render() {
         return (
-            <div class= 'container'>
-                <div class ="title">Create a product listing</div>
-            <form onSubmit={this.handleSubmit}>
-                {/* <div class ="user-details"> */}
-                    <div class="input-box">
-                    <span class="details">Product Name</span>
-                    <input type='text' value={this.state.name} onChange={this.handleProductChange}/>
+            <div className="body">
+            <div className= 'container'>
+                <div className ="title">Create a Product Listing</div>
+            <form className = "-container" onSubmit={this.handleSubmit}>
+                <div className ="user-details">
+                    <div className="input-box">
+                    <span className="details">Product Name</span>
+                    <input type='text'  value={this.state.name} onChange={this.handleProductChange}/>
                 </div>
-                <div>
-                    <label>Category</label>
+                <div className="input-box">
+                <span className="details">Category</span>
                     <select value={this.state.category} onChange={this.handleCategoryChange}>
                         <option value="hoodies">Hoodies</option>
                         <option value="pants">Pants</option>
@@ -70,17 +71,22 @@ class Seller extends Component {
                         <option value="jackets">Jackets</option>
                     </select>
                 </div>
-                <div>
-                    <label>Description</label>
-                    <textarea value={this.state.description} onChange={this.handleDescriptionChange}></textarea>
+                <div className="input-box">
+                <span className="details">Description</span>
+                <input type='text' value={this.state.description} onChange={this.handleDescriptionChange}/>
                 </div>
-                <div>
-                    <label>Price</label>
+                <div className="input-box">
+                <span className="details">Price</span>
                     <input type="number" id="number" name="price" value={this.state.price} onChange={this.handlePriceChange}/>
                 </div>
-                <button type="submit">Submit</button>
-            </form>
+                
+                <button className="button" type="submit">Submit</button>
+            
+                </div>
+               
+                </form>
             </div>
+         </div>
         );
     }
 }
