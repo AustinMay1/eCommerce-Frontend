@@ -25,6 +25,7 @@ const SearchBar = (props) => {
                 <button type="submit">Search</button> */}
                 <input type="search" name="searchTerm" value={formValues.searchTerm} placeholder="Search Products" onChange={handleChange} aria-label="Search"></input>
                 <button className="btn btn-outline-success" type="submit">Search</button>
+                <button className="btn btn-outline-success" onClick={props.getProducts}>Clear</button>
             </form>
             <Filter setSearchCategory={props.setSearchCategory}/>
             {/* <form onSubmit={handleSubmit}>
