@@ -44,8 +44,11 @@ const Navbar = ({user}) => {
                             </NavLink>
                         </li>
                         {/* <form className="d-flex" method="get" action={"/"}> */}
-                        {/* </form>  */}
-        
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/logout">
+                                Logout
+                            </NavLink>
+                        </li>
                     </React.Fragment>
                 }
         </ul>

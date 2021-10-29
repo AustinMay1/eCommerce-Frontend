@@ -70,7 +70,7 @@ class App extends Component {
   
   setSearchName = async (searchTerm) => {
     try{
-        let response = await axios.get(`https://localhost:44394/api/search/name/${searchTerm}`);
+        let response = await axios.get(`https://localhost:5001/api/search/name/${searchTerm}`);
         this.setState({
           searchResults: response.data
         })
