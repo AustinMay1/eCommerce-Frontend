@@ -10,7 +10,7 @@ import Cart from './components/pages/cart/cart';
 import Login from './components/pages/login/login';
 import Account from './components/pages/account/account';
 import Register from './components/pages/register/register';
-
+import Seller from './components/pages/Seller/Seller';
 //elements
 import Navbar from './components/elements/navbar/navbar';
 import SearchBar from './components/pages/home/searchbar/searchbar';
@@ -79,6 +79,9 @@ class App extends Component {
 
 
           <Route path="/register" component={Register} />
+
+          
+          <Route path="/seller" component={Seller} />
           
         </Switch>
 
