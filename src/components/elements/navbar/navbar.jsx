@@ -6,7 +6,7 @@ import SearchBar from '../../pages/home/searchbar/searchbar';
 const Navbar = ({user}) => {
     return(
         <>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
         <div className="container-fluid">
         <NavLink className="navbar-brand" to="/home">
             Logo(Home Button)
@@ -44,7 +44,11 @@ const Navbar = ({user}) => {
                             </NavLink>
                         </li>
                         {/* <form className="d-flex" method="get" action={"/"}> */}
-
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/logout">
+                                Logout
+                            </NavLink>
+                        </li>
                 
 
             {/* <input
