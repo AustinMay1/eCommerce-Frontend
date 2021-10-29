@@ -25,8 +25,8 @@ class App extends Component {
       shoppingCartItem: {},
       searchTerm: '',
       searchResults: [],
-      productsInCart: [
-      ]
+      productsInCart: [],
+      reviews: []
     };
   }
   componentDidMount() {
