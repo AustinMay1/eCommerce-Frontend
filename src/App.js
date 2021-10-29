@@ -11,6 +11,7 @@ import Login from './components/pages/login/login';
 import Account from './components/pages/account/account';
 import Register from './components/pages/register/register';
 
+
 //elements
 import Navbar from './components/elements/navbar/navbar';
 import SearchBar from './components/pages/home/searchbar/searchbar';
@@ -23,13 +24,13 @@ class App extends Component {
       user: null,
       searchTerm: '',
       searchResults: [
-        // {
-        //   name: '',
-        //   description: '',
-        //   price: 0,
-        //   category: ''
-        // }
-      ]
+       {
+         name: '',
+         description: '',
+         price: 0,
+         category: ''
+       }
+       ]
     };
   }
   componentDidMount() {
@@ -41,7 +42,7 @@ class App extends Component {
   }
   setSearch = async (searchTerm) => {
     try{
-        let response = await axios.get(`https://localhost:44394/api/search/name/${searchTerm}`);
+        let response = await axios.get(`https://localhost:5001/api/search/name/${searchTerm}`);
         this.setState({
           searchResults: response
         })

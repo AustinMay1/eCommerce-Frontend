@@ -4,7 +4,7 @@ import axios from "axios";
 
 const useLogin = () => {
     async function send(values) {
-        const response = await axios.post("http://localhost:5000/api/authentication/login", values);
+        const response = await axios.post("https://localhost:5001/api/authentication/login", values);
         if (response.data.token) {
             localStorage.setItem('token', response.data.token);
             window.location.reload();
@@ -15,3 +15,4 @@ const useLogin = () => {
 }
 
 export default useLogin;
+

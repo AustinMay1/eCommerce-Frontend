@@ -11,7 +11,7 @@ export default function NewUser () {
     }, [data])
 
     async function register(values) {
-        const response = await axios.post("http://localhost:5000/api/authentication", values);
+        const response = await axios.post("https://localhost:5001/api/authentication", values);
         if (response.data) {
             setData(response);
         }
