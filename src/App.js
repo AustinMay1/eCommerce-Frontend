@@ -45,20 +45,26 @@ class App extends Component {
   }
 }
   addToCart = async (productId, userId, quantity) => {
-    try{
       this.setState({
         shoppingCartItem: {
           userId: userId,
           productId: productId,
           quantity: quantity
         }
+      }, () => {
+        this.postToCart()
       })
+  }
+  
+  postToCart = async () => {
+    try{
       await axios.post(`https://localhost:44394/api/shoppingcart`, this.state.shoppingCartItem);
+    }
+    catch (ex){
+      console.log('Error in postToCart API call', ex);
+    }
   }
-  catch (ex){
-      console.log('Error in addToCart API call', ex);
-  }
-  }
+  
   setSearchName = async (searchTerm) => {
     try{
         let response = await axios.get(`https://localhost:44394/api/search/name/${searchTerm}`);

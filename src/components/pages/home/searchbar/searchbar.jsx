@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect } from "react";
 // import { useForm, useFieldArray, Controller } from "./src";
 import useForm from '../../../../hooks/useForm';
+import Filter from './filter/filter';
 
 const SearchBar = (props) => {
 
@@ -15,7 +16,6 @@ const SearchBar = (props) => {
         let searchTerm = formValues.searchTerm;
             props.setSearchName(searchTerm);
             formValues.searchTerm = '';
-        
     }
     
     return(
@@ -26,6 +26,7 @@ const SearchBar = (props) => {
                 <input type="search" name="searchTerm" value={formValues.searchTerm} placeholder="Search Products" onChange={handleChange} aria-label="Search"></input>
                 <button className="btn btn-outline-success" type="submit">Search</button>
             </form>
+            <Filter setSearchCategory={props.setSearchCategory}/>
             {/* <form onSubmit={handleSubmit}>
                     <label htmlFor='category'>Choose a category:</label>
                     <select name='category' value={formValues.searchTerm} onChange={handleChange}>
