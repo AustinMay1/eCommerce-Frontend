@@ -10,11 +10,11 @@ import Cart from './components/pages/cart/cart';
 import Login from './components/pages/login/login';
 import Account from './components/pages/account/account';
 import Register from './components/pages/register/register';
-
-
+import Seller from './components/pages/Seller/Seller';
 //elements
 import Navbar from './components/elements/navbar/navbar';
 import SearchBar from './components/pages/home/searchbar/searchbar';
+import ShoppingCart from './components/pages/cart/shoppingcart/shoppingcart';
 
 
 class App extends Component {
@@ -22,15 +22,11 @@ class App extends Component {
     super(props);
     this.state = {
       user: null,
+      shoppingCartItem: {},
       searchTerm: '',
-      searchResults: [
-       {
-         name: '',
-         description: '',
-         price: 0,
-         category: ''
-       }
-       ]
+      searchResults: [],
+      productsInCart: [
+      ]
     };
   }
   componentDidMount() {
@@ -40,17 +36,85 @@ class App extends Component {
       this.setState({user});
     } catch {}
   }
-  setSearch = async (searchTerm) => {
+  getProducts = async () => {
+    try{
+      let response = await axios.get(`https://localhost:44394/api/products`);
+      this.setState({
+        searchResults: response.data
+      })
+  }
+  catch (ex){
+      console.log('Error in getProducts API call', ex);
+  }
+}
+  addToCart = async (productId, userId, quantity) => {
+      this.setState({
+        shoppingCartItem: {
+          userId: userId,
+          productId: productId,
+          quantity: quantity
+        }
+      }, () => {
+        this.postToCart()
+      })
+  }
+  
+  postToCart = async () => {
+    try{
+      await axios.post(`https://localhost:44394/api/shoppingcart`, this.state.shoppingCartItem);
+    }
+    catch (ex){
+      console.log('Error in postToCart API call', ex);
+    }
+  }
+  
+  setSearchName = async (searchTerm) => {
     try{
         let response = await axios.get(`https://localhost:5001/api/search/name/${searchTerm}`);
         this.setState({
-          searchResults: response
+          searchResults: response.data
         })
     }
     catch (ex){
-        console.log('Error in setSearch API call', ex);
+        console.log('Error in setSearchName API call', ex);
     }
   }
+
+  setSearchCategory = async (searchTerm) => {
+    try{
+        let response = await axios.get(`https://localhost:44394/api/search/category/${searchTerm}`);
+        this.setState({
+          searchResults: response.data
+        })
+    }
+    catch (ex){
+        console.log('Error in setSearchCategory API call', ex);
+    }
+  }
+
+  getProductsInCart = async () => {
+    try{
+      let response = await axios.get(`https://localhost:44394/api/shoppingcart/${this.state.user.id}`);
+      this.setState({
+        productsInCart: response.data
+      })
+    }
+    catch (ex){
+        console.log('Error in getProductsInCart API call', ex);
+    }
+  }
+
+  deleteProductInCart = async (productId) => {
+    try{
+      await axios.delete(`https://localhost:44394/api/shoppingcart/product/${productId}/user/${this.state.user.id}`);
+      this.getProductsInCart();
+    }
+    catch (ex){
+        console.log('Error in deleteProductInCart API call', ex);
+    }
+  }
+
+
   // code for using using hook
   // const [user, setUser] = useState(null);
   // const jwt = localStorage.getItem('token');
@@ -67,10 +131,10 @@ class App extends Component {
         
         <Switch>
 
-          <Route path ="/home" render={props => <SearchBar {...props} searchTerm={this.state.searchTerm} setSearch={this.setSearch} />}/>
+          <Route path ="/home" render={props => <SearchBar {...props} user={this.state.user} addToCart={this.addToCart} getProducts={this.getProducts} searchTerm={this.state.searchTerm} setSearchName={this.setSearchName} setSearchCategory={this.setSearchCategory} searchResults={this.state.searchResults}/>}/>
           
 
-          <Route path="/cart" component={Cart} />
+          <Route path="/cart" render={props => <ShoppingCart {...props} getProductsInCart={this.getProductsInCart} deleteProductInCart={this.deleteProductInCart} productsInCart={this.state.productsInCart}/> } />
           
 
           <Route path="/login" component={Login} />
@@ -80,6 +144,9 @@ class App extends Component {
 
 
           <Route path="/register" component={Register} />
+
+          
+          <Route path="/seller" component={Seller} />
           
         </Switch>
 
@@ -93,4 +160,3 @@ class App extends Component {
 // console.log(decode);
 
 export default App;
-
