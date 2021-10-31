@@ -1,12 +1,11 @@
 import react from 'react';
-import SearchBar from './searchbar/searchbar';
 import Products from './/products/products';
 
-const Home = (props) => {
+const Home = () => {
     
     return (
         <div className="m-5 container">
-            <SearchBar />
+            <Products />
             {/* <Products /> */}
             
                 <h1></h1>

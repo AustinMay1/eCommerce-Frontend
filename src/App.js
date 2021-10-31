@@ -13,7 +13,7 @@ import Register from './components/pages/register/register';
 import Seller from './components/pages/Seller/Seller';
 //elements
 import Navbar from './components/elements/navbar/navbar';
-import SearchBar from './components/pages/home/searchbar/searchbar';
+import Products from './components/pages/home/products/products';
 import ShoppingCart from './components/pages/cart/shoppingcart/shoppingcart';
 
 
@@ -26,9 +26,9 @@ class App extends Component {
       searchTerm: '',
       searchResults: [],
       productsInCart: [],
-      reviews: []
     };
   }
+
   componentDidMount() {
     const jwt = localStorage.getItem('token');
     try{
@@ -36,27 +36,39 @@ class App extends Component {
       this.setState({user});
     } catch {}
   }
+
+  // code for using using hook
+  // const [user, setUser] = useState(null);
+  // const jwt = localStorage.getItem('token');
+  // useEffect(() => {
+  //   try{
+  //     const localUser = jwtDecode (jwt);
+  //     setUser(localUser);
+  //   } catch {}
+  // }, [])
+
   getProducts = async () => {
     try{
       let response = await axios.get(`https://localhost:44394/api/products`);
       this.setState({
         searchResults: response.data
       })
+    }
+    catch (ex){
+        console.log('Error in getProducts API call', ex);
+    }
   }
-  catch (ex){
-      console.log('Error in getProducts API call', ex);
-  }
-}
+
   addToCart = async (productId, userId, quantity) => {
-      this.setState({
-        shoppingCartItem: {
-          userId: userId,
-          productId: productId,
-          quantity: quantity
-        }
-      }, () => {
-        this.postToCart()
-      })
+    this.setState({
+      shoppingCartItem: {
+        userId: userId,
+        productId: productId,
+        quantity: quantity
+      }
+    }, () => {
+      this.postToCart()
+    })
   }
   
   postToCart = async () => {
@@ -70,7 +82,7 @@ class App extends Component {
   
   setSearchName = async (searchTerm) => {
     try{
-        let response = await axios.get(`https://localhost:5001/api/search/name/${searchTerm}`);
+        let response = await axios.get(`https://localhost:44394/api/search/name/${searchTerm}`);
         this.setState({
           searchResults: response.data
         })
@@ -114,16 +126,6 @@ class App extends Component {
     }
   }
 
-
-  // code for using using hook
-  // const [user, setUser] = useState(null);
-  // const jwt = localStorage.getItem('token');
-  // useEffect(() => {
-  //   try{
-  //     const localUser = jwtDecode (jwt);
-  //     setUser(localUser);
-  //   } catch {}
-  // }, [])
   render(){
     return (
       <Router>
@@ -131,7 +133,7 @@ class App extends Component {
         
         <Switch>
 
-          <Route path ="/home" render={props => <SearchBar {...props} user={this.state.user} addToCart={this.addToCart} getProducts={this.getProducts} searchTerm={this.state.searchTerm} setSearchName={this.setSearchName} setSearchCategory={this.setSearchCategory} searchResults={this.state.searchResults}/>}/>
+          <Route exact path ="/" render={props => <Products {...props} user={this.state.user} addToCart={this.addToCart} getProducts={this.getProducts} searchTerm={this.state.searchTerm} setSearchName={this.setSearchName} setSearchCategory={this.setSearchCategory} searchResults={this.state.searchResults}/>}/>
           
 
           <Route path="/cart" render={props => <ShoppingCart {...props} getProductsInCart={this.getProductsInCart} deleteProductInCart={this.deleteProductInCart} productsInCart={this.state.productsInCart}/> } />

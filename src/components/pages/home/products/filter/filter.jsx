@@ -16,7 +16,8 @@ class Filter extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.setSearchCategory(this.state.category);
+        let category = this.state.category;
+        this.props.setSearchCategory(category);
     }
 
     render() {
@@ -29,6 +30,8 @@ class Filter extends Component {
                         <option value='Hoodies'>Hoodies</option>
                         <option value='Pants'>Pants</option>
                         <option value='Shirts'>Shirts</option>
+                        <option value='Hats'>Hats</option>
+                        <option value='Jackets'>Jackets</option>
                     </select>
                     <button className="btn btn-outline-success" type="submit">Filter</button>
                 </form>
