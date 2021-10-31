@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
-
+import './register.css'
 
 import useForm from '../../../hooks/useForm';
 import useLogin from '../../../hooks/useLogin';
@@ -30,7 +30,7 @@ const Register = () => {
     }, [userInfo])
 
     return (
-        <div class='form'>
+        <div class='body'>
         <form onSubmit={handleSubmit} >
             <h1>{error}</h1>
             <div class="mb-3">
@@ -57,7 +57,7 @@ const Register = () => {
                 <label for="phoneInput" class="form-label">Phone</label>
                 <input type="phone" name="phonenumber" value={formValues.phonenumber} onChange={handleChange} class="form-control" id="phoneInput" />
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="login-button">Submit</button>
         </form>
         </div>
     )
