@@ -10,7 +10,7 @@ class Seller extends Component {
             name: '',
             category: 'Hoodies',
             description: '',
-            price: 0,
+            price: 20,
         }
     }
 
