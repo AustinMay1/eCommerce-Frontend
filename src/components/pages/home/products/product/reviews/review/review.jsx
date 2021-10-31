@@ -3,7 +3,9 @@ import React from 'react'
 const Review = (props) => {
 
     return (
-        <li>{props.review.content}</li>
+        <li>
+            {props.review.content}
+        </li>
     )
 }
 
