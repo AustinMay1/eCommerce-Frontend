@@ -12,10 +12,11 @@
     align-items: center;
     padding: 10px;
     background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    
 }
 
 .container{
-
+   
     max-width: 700px;
     width: 100%;
     background: #fff;
@@ -24,9 +25,10 @@
 }
 
 .container .title{
-    font-size: 25px;
+    font-size: 30px;
     font-weight: 500;
     position: relative;
+    
 }
 
 .container .title::before{

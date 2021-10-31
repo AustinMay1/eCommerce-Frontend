@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import useForm from '../../../hooks/useForm';
 import useLogin from '../../../hooks/useLogin';
 import Register from '../register/register';
+import './login.css';
 
 const Login = () => {
     const history = useHistory();
@@ -13,7 +14,7 @@ const Login = () => {
     const { formValues, handleChange, handleSubmit } = useForm(() => login(formValues, send, history));
 
     return (
-        <div class='form'>
+        <div class='body'>
             <form onSubmit={handleSubmit} >
                 <div class="mb-3">
                     <label for="usernameInput" class="form-label">Username</label>
@@ -23,9 +24,9 @@ const Login = () => {
                     <label for="exampleInputPassword1" class="form-label">Password</label>
                     <input type="password" name="password" value={formValues.password} onChange={handleChange} class="form-control" id="exampleInputPassword1" />
                 </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button class="login-button" type="submit" >Submit</button>
             </form>
-
+        
             <p>Sign up <Link to="/register">here.</Link></p>
         </div>
         )
