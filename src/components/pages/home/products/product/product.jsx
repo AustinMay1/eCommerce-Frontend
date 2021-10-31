@@ -26,7 +26,7 @@ const Product = (props) => {
             {props.product.description}
             {props.product.price}
             {props.product.category}
-            <button onClick={event => props.addToCart(props.product.id, props.user.id, 1)}>Add to Cart</button>
+            <button onClick={event => props.addToCart(props.product.id, 1)}>Add to Cart</button>
             <Reviews reviews={reviews} />
         </div>
     )

@@ -5,16 +5,15 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 //pages
-import Home from './components/pages/home/home';
-import Cart from './components/pages/cart/cart';
-import Login from './components/pages/login/login';
-import Account from './components/pages/account/account';
-import Register from './components/pages/register/register';
-import Seller from './components/pages/Seller/Seller';
-//elements
-import Navbar from './components/elements/navbar/navbar';
 import Products from './components/pages/home/products/products';
 import ShoppingCart from './components/pages/cart/shoppingcart/shoppingcart';
+import Login from './components/pages/login/login';
+import Register from './components/pages/register/register';
+import Seller from './components/pages/Seller/Seller';
+import PostReview from './components/pages/cart/shoppingcart/postreview/postreview';
+//elements
+import Navbar from './components/elements/navbar/navbar';
+
 
 
 class App extends Component {
@@ -34,7 +33,9 @@ class App extends Component {
     try{
       const user = jwtDecode(jwt);
       this.setState({user});
-    } catch {}
+    } catch (ex){
+      console.log(('Error in setting user', ex))
+    }
   }
 
   // code for using using hook
@@ -59,7 +60,8 @@ class App extends Component {
     }
   }
 
-  addToCart = async (productId, userId, quantity) => {
+  addToCart = async (productId, quantity) => {
+    let userId = this.state.user.id
     this.setState({
       shoppingCartItem: {
         userId: userId,
@@ -133,16 +135,13 @@ class App extends Component {
         
         <Switch>
 
-          <Route exact path ="/" render={props => <Products {...props} user={this.state.user} addToCart={this.addToCart} getProducts={this.getProducts} searchTerm={this.state.searchTerm} setSearchName={this.setSearchName} setSearchCategory={this.setSearchCategory} searchResults={this.state.searchResults}/>}/>
+          <Route exact path ="/" render={props => <Products {...props} addToCart={this.addToCart} getProducts={this.getProducts} searchTerm={this.state.searchTerm} setSearchName={this.setSearchName} setSearchCategory={this.setSearchCategory} searchResults={this.state.searchResults}/>}/>
           
 
-          <Route path="/cart" render={props => <ShoppingCart {...props} getProductsInCart={this.getProductsInCart} deleteProductInCart={this.deleteProductInCart} productsInCart={this.state.productsInCart}/> } />
+          <Route path="/cart" render={props => <ShoppingCart {...props} transferProductId={this.transferProductId} getProductsInCart={this.getProductsInCart} deleteProductInCart={this.deleteProductInCart} productsInCart={this.state.productsInCart}/> } />
           
 
           <Route path="/login" component={Login} />
-          
-
-          <Route path="/account" component={Account} />
 
 
           <Route path="/register" component={Register} />
@@ -150,6 +149,9 @@ class App extends Component {
           
           <Route path="/seller" component={Seller} />
           
+
+          <Route path="/postreview" component={PostReview} />
+
         </Switch>
 
       </Router>
