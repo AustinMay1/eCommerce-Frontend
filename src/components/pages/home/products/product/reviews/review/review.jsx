@@ -4,8 +4,12 @@ const Review = (props) => {
 
     return (
         <li>
-            {props.review.content}
-            {props.review.rating}
+            <div>
+                {props.review.content}
+            </div>
+            <div>
+                Rating: {props.review.rating}
+            </div>
         </li>
     )
 }

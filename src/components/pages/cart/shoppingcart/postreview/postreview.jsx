@@ -34,7 +34,7 @@ const PostReview = (props) => {
     return(
         <React.Fragment>
             <div className='body'>
-                <div className='card'>
+                <div className='card review-card'>
                     <h1 className='review-header'>Leave a Review</h1>
                     <form onSubmit={handleSubmit}>
                         <div className='review-body input-group'>

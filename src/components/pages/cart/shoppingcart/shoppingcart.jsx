@@ -27,43 +27,53 @@ const ShoppingCart = (props) => {
 
     return (
         <React.Fragment>
-            <div classname='container con-body'>
+            <div classname='container-md con-body'>
                 <div className='row'>
-                    <div className='col-3' />
-                        <div className='col-6'>
+                    <div className='col-md-3 transparent-column' />
+                        <div className='col-md-6 shopping-cart-body'>
                             {props.productsInCart.map(product => {
                                 return (
-                                    <div classname='card product'>
-                                        <h2>
-                                            {product.product.name}
-                                        </h2>
-                                        <div>
-                                            {product.product.description}
-                                        </div>
-                                        <div>
-                                            ${product.product.price}
-                                        </div>
-                                        <div>
-                                            {product.product.category}
-                                        </div>
-                                        <div>
-                                            Quantity{product.quantity}
-                                        </div>
-                                        <button onClick={event => props.deleteProductInCart(product.product.id)}>Remove from Cart</button>
-                                        <Link to ={{
-                                            pathname:'/postreview',
-                                            postReviewProps:{
-                                                productId: product.product.id
-                                            }
-                                        }} >Leave Review</Link>
+                                    <div className='card product'>
+                                        <div className='row'>
+                                            <div className='col-md-9'>
+                                                <h2>
+                                                    {product.product.name}
+                                                </h2>
+                                                <div>
+                                                    {product.product.description}
+                                                </div>
+                                                <div>
+                                                    ${product.product.price}
+                                                </div>
+                                                <div>
+                                                    {product.product.category}
+                                                </div>
+                                                <div>
+                                                    Quantity{product.quantity}
+                                                </div>
+                                                <Link to ={{
+                                                    pathname:'/postreview',
+                                                    postReviewProps:{
+                                                        productId: product.product.id
+                                                    }
+                                                }} >Leave Review</Link>
+                                            </div>
+                                            <div className='col-md-3 right-side-card'>
+                                                <div classname='upper-padding'></div>
+                                                <div className='submit-div'>
+                                                    <button className='btn btn-primary submit-button' onClick={event => props.deleteProductInCart(product.product.id)}>Remove from Cart</button>
+                                                </div>
+                                            </div>
+                                        </div> 
                                     </div>
                                 )
                             })}
-                            <div className="total">
+                            <div className='card'>
+                                <p className='total'>Total:</p>
                                 {total}
                             </div>
                         </div>
-                    <div className='col-3' />
+                    <div className='col-md-3 transparent-column' />
                 </div>
             </div>
         </React.Fragment>

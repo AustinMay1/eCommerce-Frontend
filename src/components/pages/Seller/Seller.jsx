@@ -61,7 +61,6 @@ const Seller = () => {
         }
     }
     
-
     return (
         <div className="body">
             <div className= 'container'>

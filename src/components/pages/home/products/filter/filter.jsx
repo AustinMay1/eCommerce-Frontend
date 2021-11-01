@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../product/products.css';
 
 class Filter extends Component {
     constructor(props) {
@@ -25,7 +26,8 @@ class Filter extends Component {
             <React.Fragment>
             <div>
                 <form onSubmit={(event) => this.handleSubmit(event)}>
-                    <label htmlFor='category'>Choose a filter:</label>
+                    <label htmlFor='category'>Choose a filter: </label>
+                    <br />
                     <select name='category' value={this.state.category} onChange={this.handleChange}>
                         <option value='Hoodies'>Hoodies</option>
                         <option value='Pants'>Pants</option>
@@ -33,7 +35,7 @@ class Filter extends Component {
                         <option value='Hats'>Hats</option>
                         <option value='Jackets'>Jackets</option>
                     </select>
-                    <button className="btn btn-outline-success" type="submit">Filter</button>
+                    <button className="btn btn-primary scoot-btn" type="submit">Filter</button>
                 </form>
             </div>
             </React.Fragment>

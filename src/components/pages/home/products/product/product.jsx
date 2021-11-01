@@ -62,16 +62,24 @@ const Product = (props) => {
         getAverageRating(props.product.id);
     }, [props.product])
 
-    return (
-       
-        <div class="main_content">
-            
-            <h2>{props.product.name}</h2>
-            <p>{props.product.description}</p>
-            <p>Price: {props.product.price}</p>
-            <p>Category: {props.product.category}</p>
-            <button onClick={event => props.addToCart(props.product.id, props.user.id, 1)}>Add to Cart</button>
-            <Reviews reviews={reviews} />
+    return ( 
+        <div className="card product-card">
+            <div className='row'>
+                <div className='col-6'>
+                    <h2>{props.product.name}</h2>
+                    <p>{props.product.description}</p>
+                    <p>Price: ${props.product.price}</p>
+                    <p>Category: {props.product.category}</p>
+                    <p>Average Rating: {averageRating}</p>
+                    {props.user &&
+                        <button className="btn btn-primary" onClick={event => addToCart(props.product.id, 1)}>Add to Cart</button>
+                    }
+                </div>
+                <div className='col-6'>
+                    <h4>Reviews</h4>
+                    <Reviews reviews={reviews} />
+                </div>
+            </div>
         </div>
        
     )
