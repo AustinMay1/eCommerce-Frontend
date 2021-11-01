@@ -65,7 +65,9 @@ const Product = (props) => {
             {props.product.price}
             {props.product.category}
             {averageRating}
-            <button onClick={event => addToCart(props.product.id, 1)}>Add to Cart</button>
+            {props.user &&
+                <button onClick={event => addToCart(props.product.id, 1)}>Add to Cart</button>
+            }
             <Reviews reviews={reviews}/>
         </div>
     )
