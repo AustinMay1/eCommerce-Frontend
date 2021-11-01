@@ -5,6 +5,7 @@ import useForm from '../../../../hooks/useForm';
 import Filter from './filter/filter';
 import Product from './product/product';
 
+
 const Products = (props) => {
 
     const { formValues, handleChange, handleSubmit } = useForm(search)
@@ -27,7 +28,7 @@ const Products = (props) => {
                 <button className="btn btn-outline-success" onClick={props.getProducts}>Clear</button>
             </form>
             <Filter setSearchCategory={props.setSearchCategory}/>
-            <div>
+            <div class='body'>
                 {props.searchResults.map(product => {
                     return (
                         <Product addToCart={props.addToCart} product={product} user={props.user}/>

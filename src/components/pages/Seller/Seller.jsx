@@ -37,6 +37,7 @@ class Seller extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         this.createProduct(this.state)
+        alert("Product successfully listed.")
     }
     
     createProduct = async (newProduct) => {
