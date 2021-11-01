@@ -1,10 +1,8 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import useForm from '../../../hooks/useForm';
 import useLogin from '../../../hooks/useLogin';
-import Register from '../register/register';
 import './login.css';
 
 const Login = () => {
@@ -24,10 +22,9 @@ const Login = () => {
                     <label for="exampleInputPassword1" class="form-label">Password</label>
                     <input type="password" name="password" value={formValues.password} onChange={handleChange} class="form-control" id="exampleInputPassword1" />
                 </div>
-            <button class="login-button" type="submit" >Submit</button>
+                <button class="login-button" type="submit" >Submit</button>
+                <p>Not registered? Sign up <Link to="/register">here.</Link></p>
             </form>
-        
-            <p>Sign up <Link to="/register">here.</Link></p>
         </div>
         )
 }

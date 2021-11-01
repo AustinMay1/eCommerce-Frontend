@@ -1,20 +1,20 @@
 
 import './App.css';
-import React, {useState, useEffect, Component} from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import React, {Component} from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 //pages
-import Home from './components/pages/home/home';
-import Cart from './components/pages/cart/cart';
-import Login from './components/pages/login/login';
-import Account from './components/pages/account/account';
-import Register from './components/pages/register/register';
-import Seller from './components/pages/Seller/Seller';
-//elements
-import Navbar from './components/elements/navbar/navbar';
 import Products from './components/pages/home/products/products';
 import ShoppingCart from './components/pages/cart/shoppingcart/shoppingcart';
+import Login from './components/pages/login/login';
+import Register from './components/pages/register/register';
+import Seller from './components/pages/Seller/Seller';
+import PostReview from './components/pages/cart/shoppingcart/postreview/postreview';
+import Logout from './components/pages/logout';
+//elements
+import Navbar from './components/elements/navbar/navbar';
+
 
 
 class App extends Component {
@@ -22,7 +22,6 @@ class App extends Component {
     super(props);
     this.state = {
       user: null,
-      shoppingCartItem: {},
       searchTerm: '',
       searchResults: [],
       productsInCart: [],
@@ -34,7 +33,9 @@ class App extends Component {
     try{
       const user = jwtDecode(jwt);
       this.setState({user});
-    } catch {}
+    } catch (ex){
+      console.log('Error in setting user', ex)
+    }
   }
 
   // code for using using hook
@@ -56,27 +57,6 @@ class App extends Component {
     }
     catch (ex){
         console.log('Error in getProducts API call', ex);
-    }
-  }
-
-  addToCart = async (productId, userId, quantity) => {
-    this.setState({
-      shoppingCartItem: {
-        userId: userId,
-        productId: productId,
-        quantity: quantity
-      }
-    }, () => {
-      this.postToCart()
-    })
-  }
-  
-  postToCart = async () => {
-    try{
-      await axios.post(`https://localhost:44394/api/shoppingcart`, this.state.shoppingCartItem);
-    }
-    catch (ex){
-      console.log('Error in postToCart API call', ex);
     }
   }
   
@@ -106,7 +86,8 @@ class App extends Component {
 
   getProductsInCart = async () => {
     try{
-      let response = await axios.get(`https://localhost:44394/api/shoppingcart/${this.state.user.id}`);
+      const jwt = localStorage.getItem('token');
+      let response = await axios.get(`https://localhost:44394/api/shoppingcart/${this.state.user.id}`, { headers: {Authorization: 'Bearer ' + jwt}});
       this.setState({
         productsInCart: response.data
       })
@@ -118,7 +99,8 @@ class App extends Component {
 
   deleteProductInCart = async (productId) => {
     try{
-      await axios.delete(`https://localhost:44394/api/shoppingcart/product/${productId}/user/${this.state.user.id}`);
+      const jwt = localStorage.getItem('token');
+      await axios.delete(`https://localhost:44394/api/shoppingcart/product/${productId}/user/${this.state.user.id}`, { headers: {Authorization: 'Bearer ' + jwt}});
       this.getProductsInCart();
     }
     catch (ex){
@@ -129,20 +111,17 @@ class App extends Component {
   render(){
     return (
       <Router>
-        <Navbar />
+        <Navbar user={this.state.user}/>
         
         <Switch>
 
           <Route exact path ="/" render={props => <Products {...props} user={this.state.user} addToCart={this.addToCart} getProducts={this.getProducts} searchTerm={this.state.searchTerm} setSearchName={this.setSearchName} setSearchCategory={this.setSearchCategory} searchResults={this.state.searchResults}/>}/>
           
 
-          <Route path="/cart" render={props => <ShoppingCart {...props} getProductsInCart={this.getProductsInCart} deleteProductInCart={this.deleteProductInCart} productsInCart={this.state.productsInCart}/> } />
+          <Route path="/cart" render={props => <ShoppingCart {...props} user={this.state.user} getProductsInCart={this.getProductsInCart} deleteProductInCart={this.deleteProductInCart} productsInCart={this.state.productsInCart}/> } />
           
 
           <Route path="/login" component={Login} />
-          
-
-          <Route path="/account" component={Account} />
 
 
           <Route path="/register" component={Register} />
@@ -150,6 +129,12 @@ class App extends Component {
           
           <Route path="/seller" component={Seller} />
           
+
+          <Route path="/postreview" component={PostReview} />
+
+
+          <Route path="/logout" component={Logout} />
+
         </Switch>
 
       </Router>

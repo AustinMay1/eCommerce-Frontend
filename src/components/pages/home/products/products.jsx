@@ -1,6 +1,4 @@
-import axios from 'axios';
 import React, { useEffect } from "react";
-// import { useForm, useFieldArray, Controller } from "./src";
 import useForm from '../../../../hooks/useForm';
 import Filter from './filter/filter';
 import Product from './product/product';
@@ -31,7 +29,7 @@ const Products = (props) => {
             <div class='body'>
                 {props.searchResults.map(product => {
                     return (
-                        <Product addToCart={props.addToCart} product={product} user={props.user}/>
+                        <Product user={props.user} addToCart={props.addToCart} product={product}/>
                     )
                 })}
             </div>
