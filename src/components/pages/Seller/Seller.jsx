@@ -61,7 +61,7 @@ const Seller = () => {
                         </div>
                         <div className="input-box">
                             <span className="details">Price</span>
-                            <input type="number" id="number" name="price" value={formValues.price} onChange={handleChange}/>
+                            <input type="number" min="1" id="number" name="price" value={formValues.price} onChange={handleChange}/>
                         </div>
                         <button className="button" type="submit">Submit</button>
                     </div>
