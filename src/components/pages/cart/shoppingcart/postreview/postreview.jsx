@@ -1,3 +1,4 @@
+import './postreview.css'
 import axios from 'axios';
 import React from "react";
 import useForm from '../../../../../hooks/useForm';
@@ -32,13 +33,23 @@ const PostReview = (props) => {
     
     return(
         <React.Fragment>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="content">Review Body</label>
-                <input type="text" name="content" value={formValues.content} onChange={handleChange}></input>
-                <label htmlFor="rating">Rating</label>
-                <input type="number" min="1" max="5" name="rating" value={formValues.rating} onChange={handleChange}></input>
-                <button className="btn btn-outline-success" type="submit">Submit</button>
-            </form>
+            <div className='body'>
+                <div className='card'>
+                    <h1 className='review-header'>Leave a Review</h1>
+                    <form onSubmit={handleSubmit}>
+                        <div className='review-body input-group'>
+                            <label className='label' htmlFor="content">Review:</label>
+                            <textarea rows='4' cols='25' name="content" value={formValues.content} onChange={handleChange}></textarea>
+                        </div>
+                        <div className='rating'>
+                            <label className='label' htmlFor="rating">Rating:</label>
+                            <input type="number" min="1" max="5" name="rating" value={formValues.rating} onChange={handleChange}></input>
+                        </div>
+                        <br />
+                        <button className="btn btn-primary sub-button" type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
         </React.Fragment>
     )
 }
