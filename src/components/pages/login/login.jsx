@@ -1,10 +1,8 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import useForm from '../../../hooks/useForm';
 import useLogin from '../../../hooks/useLogin';
-import Register from '../register/register';
 import './login.css';
 
 const Login = () => {

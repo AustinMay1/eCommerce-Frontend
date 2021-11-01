@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Reviews from './reviews/reviews';
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
 
 const Product = (props) => {
 
     const[reviews, setReviews] = useState([])
     const[averageRating, setAverageRating] = useState([])
+    const history = useHistory();
 
     const getReviews = async () => {
         try{
@@ -27,6 +29,26 @@ const Product = (props) => {
         }
     }
 
+    const addToCart = (productId, quantity) => {
+        let userId = props.user.id
+        let shoppingCartItem = {
+            userId: userId,
+            productId: productId,
+            quantity: quantity
+        }
+        postToCart(shoppingCartItem);
+    }
+    
+    const postToCart = async (shoppingCartItem) => {
+        try{
+            await axios.post(`https://localhost:44394/api/shoppingcart`, shoppingCartItem);
+            history.push('/cart')
+        }
+        catch (ex){
+            console.log('Error in postToCart API call', ex);
+        }
+    }
+
     useEffect(() => {
         getReviews(props.product.id);
     }, [props.product])
@@ -42,7 +64,7 @@ const Product = (props) => {
             {props.product.price}
             {props.product.category}
             {averageRating}
-            <button onClick={event => props.addToCart(props.product.id, 1)}>Add to Cart</button>
+            <button onClick={event => addToCart(props.product.id, 1)}>Add to Cart</button>
             <Reviews reviews={reviews}/>
         </div>
     )

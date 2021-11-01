@@ -1,7 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 import '../cart.css';
 
 
@@ -26,8 +25,6 @@ const ShoppingCart = (props) => {
                                     {product.product.category}
                                     {product.quantity}
                                     <button onClick={event => props.deleteProductInCart(product.product.id)}>Remove from Cart</button>
-                                    {/* <button onClick={event => props.postReview(props.rating, props.content, props.product.id)}>Leave Review</button> */}
-                                    {/* <button onClick={event => props.transferProductId(product.product.id)}>Leave Review</button> */}
                                     <Link to ={{
                                         pathname:'/postreview',
                                         postReviewProps:{

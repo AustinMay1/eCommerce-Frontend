@@ -1,6 +1,5 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
-// import SearchBar from '../../pages/home/searchbar/searchbar';
+import { NavLink } from "react-router-dom";
 import './navbar.css';
 
 
@@ -10,7 +9,7 @@ const Navbar = ({user}) => {
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
-            <img src="/images/fithubpng.png"/>
+            <img src="/images/fithubpng.png" alt="Home Logo"/>
         </NavLink>
         <button
             className="navbar-toggler"

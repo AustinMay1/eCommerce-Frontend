@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import './register.css'
@@ -15,7 +14,7 @@ const Register = () => {
     const sendRegistration = () => {
         console.log(formValues);
         register(formValues);
-        history.push("/");
+        history.push("/login");
     }
     const { formValues, handleChange, handleSubmit } = useForm(sendRegistration);
 

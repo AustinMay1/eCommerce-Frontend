@@ -1,6 +1,5 @@
 import axios from 'axios';
-import React, { useEffect } from "react";
-// import { useForm, useFieldArray, Controller } from "./src";
+import React from "react";
 import useForm from '../../../../../hooks/useForm';
 import { useHistory } from "react-router-dom";
 
@@ -36,7 +35,7 @@ const PostReview = (props) => {
                 <label htmlFor="content">Review Body</label>
                 <input type="text" name="content" value={formValues.content} onChange={handleChange}></input>
                 <label htmlFor="rating">Rating</label>
-                <input type="number" name="rating" value={formValues.rating} onChange={handleChange}></input>
+                <input type="number" min="1" max="5" name="rating" value={formValues.rating} onChange={handleChange}></input>
                 <button className="btn btn-outline-success" type="submit">Submit</button>
             </form>
         </React.Fragment>

@@ -1,7 +1,7 @@
 
 import './App.css';
-import React, {useState, useEffect, Component} from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import React, {Component} from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 //pages
@@ -22,7 +22,6 @@ class App extends Component {
     super(props);
     this.state = {
       user: null,
-      shoppingCartItem: {},
       searchTerm: '',
       searchResults: [],
       productsInCart: [],
@@ -58,28 +57,6 @@ class App extends Component {
     }
     catch (ex){
         console.log('Error in getProducts API call', ex);
-    }
-  }
-
-  addToCart = async (productId, quantity) => {
-    let userId = this.state.user.id
-    this.setState({
-      shoppingCartItem: {
-        userId: userId,
-        productId: productId,
-        quantity: quantity
-      }
-    }, () => {
-      this.postToCart()
-    })
-  }
-  
-  postToCart = async () => {
-    try{
-      await axios.post(`https://localhost:44394/api/shoppingcart`, this.state.shoppingCartItem);
-    }
-    catch (ex){
-      console.log('Error in postToCart API call', ex);
     }
   }
   
@@ -136,7 +113,7 @@ class App extends Component {
         
         <Switch>
 
-          <Route exact path ="/" render={props => <Products {...props} addToCart={this.addToCart} getProducts={this.getProducts} searchTerm={this.state.searchTerm} setSearchName={this.setSearchName} setSearchCategory={this.setSearchCategory} searchResults={this.state.searchResults}/>}/>
+          <Route exact path ="/" render={props => <Products {...props} user={this.state.user} addToCart={this.addToCart} getProducts={this.getProducts} searchTerm={this.state.searchTerm} setSearchName={this.setSearchName} setSearchCategory={this.setSearchCategory} searchResults={this.state.searchResults}/>}/>
           
 
           <Route path="/cart" render={props => <ShoppingCart {...props} transferProductId={this.transferProductId} getProductsInCart={this.getProductsInCart} deleteProductInCart={this.deleteProductInCart} productsInCart={this.state.productsInCart}/> } />
