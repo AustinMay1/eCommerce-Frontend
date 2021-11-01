@@ -22,10 +22,9 @@ const Login = () => {
                     <label for="exampleInputPassword1" class="form-label">Password</label>
                     <input type="password" name="password" value={formValues.password} onChange={handleChange} class="form-control" id="exampleInputPassword1" />
                 </div>
-            <button class="login-button" type="submit" >Submit</button>
+                <button class="login-button" type="submit" >Submit</button>
+                <p>Not registered? Sign up <Link to="/register">here.</Link></p>
             </form>
-        
-            <p>Sign up <Link to="/register">here.</Link></p>
         </div>
         )
 }
