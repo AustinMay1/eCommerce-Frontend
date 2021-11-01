@@ -62,6 +62,7 @@ const Product = (props) => {
         getAverageRating(props.product.id);
     }, [props.product])
 
+
     return ( 
         <div className="card product-card">
             <div className='row'>
@@ -80,8 +81,7 @@ const Product = (props) => {
                     <Reviews reviews={reviews} />
                 </div>
             </div>
-        </div>
-       
+        </div>      
     )
 }
 

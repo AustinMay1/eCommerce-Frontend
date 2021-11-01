@@ -70,7 +70,7 @@ const ShoppingCart = (props) => {
                             })}
                             <div className='card product'>
                                 <h3 className='total'>Total:</h3>
-                                <h4>${total}</h4>
+                                <h4>{total}</h4>
                             </div>
                         </div>
                     <div className='col-md-3 transparent-column' />
