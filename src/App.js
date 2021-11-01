@@ -34,7 +34,7 @@ class App extends Component {
       const user = jwtDecode(jwt);
       this.setState({user});
     } catch (ex){
-      console.log(('Error in setting user', ex))
+      console.log('Error in setting user', ex)
     }
   }
 
@@ -118,7 +118,7 @@ class App extends Component {
           <Route exact path ="/" render={props => <Products {...props} user={this.state.user} addToCart={this.addToCart} getProducts={this.getProducts} searchTerm={this.state.searchTerm} setSearchName={this.setSearchName} setSearchCategory={this.setSearchCategory} searchResults={this.state.searchResults}/>}/>
           
 
-          <Route path="/cart" render={props => <ShoppingCart {...props} transferProductId={this.transferProductId} getProductsInCart={this.getProductsInCart} deleteProductInCart={this.deleteProductInCart} productsInCart={this.state.productsInCart}/> } />
+          <Route path="/cart" render={props => <ShoppingCart {...props} user={this.state.user} getProductsInCart={this.getProductsInCart} deleteProductInCart={this.deleteProductInCart} productsInCart={this.state.productsInCart}/> } />
           
 
           <Route path="/login" component={Login} />
