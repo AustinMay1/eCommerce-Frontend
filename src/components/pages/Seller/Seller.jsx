@@ -21,6 +21,33 @@ const Seller = () => {
         createProduct(newProduct);
     }
 
+    // handleProductChange = (event) => {
+    //     this.setState({
+    //         name: event.target.value
+    //     })
+    // }
+    // handleCategoryChange = (event) => {
+    //     this.setState({
+    //         category: event.target.value
+    //     })
+    // }
+    // handleDescriptionChange = (event) => {
+    //     this.setState({
+    //         description: event.target.value
+    //     })
+    // }
+    // handlePriceChange = (event) => {
+    //     this.setState({
+    //         price: event.target.value
+    //     })
+    // }
+    // handleSubmit = (event) => {
+    //     event.preventDefault()
+    //     this.createProduct(this.state)
+      
+    // }
+    
+    // createProduct = async (newProduct) => {
     const createProduct = async (productObject) => {
         try{
             let newProduct = productObject;
@@ -33,6 +60,7 @@ const Seller = () => {
             console.log('Error in createProduct API call', ex)
         }
     }
+    
 
     return (
         <div className="body">
@@ -69,6 +97,7 @@ const Seller = () => {
             </div>
         </div>
     );
+
 }
 
 export default Seller;

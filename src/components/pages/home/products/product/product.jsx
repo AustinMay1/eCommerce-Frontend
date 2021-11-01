@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Reviews from './reviews/reviews';
 import axios from 'axios';
+import './products.css'
+
+
+
 import { useHistory } from "react-router-dom";
 
 const Product = (props) => {
@@ -59,17 +63,17 @@ const Product = (props) => {
     }, [props.product])
 
     return (
-        <div>
-            {props.product.name}
-            {props.product.description}
-            {props.product.price}
-            {props.product.category}
-            {averageRating}
-            {props.user &&
-                <button onClick={event => addToCart(props.product.id, 1)}>Add to Cart</button>
-            }
-            <Reviews reviews={reviews}/>
+       
+        <div class="main_content">
+            
+            <h2>{props.product.name}</h2>
+            <p>{props.product.description}</p>
+            <p>Price: {props.product.price}</p>
+            <p>Category: {props.product.category}</p>
+            <button onClick={event => props.addToCart(props.product.id, props.user.id, 1)}>Add to Cart</button>
+            <Reviews reviews={reviews} />
         </div>
+       
     )
 }
 
