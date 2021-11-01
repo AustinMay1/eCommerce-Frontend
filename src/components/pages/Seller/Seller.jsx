@@ -19,13 +19,13 @@ const Seller = () => {
             price: priceAsNumber
         }
         createProduct(newProduct);
-        history.push('/')
     }
 
     const createProduct = async (productObject) => {
         try{
             let newProduct = productObject;
             await axios.post("https://localhost:44394/api/products", newProduct);
+            history.push('/')
         }
             
         catch(ex){
