@@ -22,7 +22,8 @@ const PostReview = (props) => {
 
     const postReview = async (review) => {
         try{
-            await axios.post(`https://localhost:44394/api/reviews`, review);
+            const jwt = localStorage.getItem('token');
+            await axios.post(`https://localhost:44394/api/reviews`, review, { headers: {Authorization: 'Bearer ' + jwt}});
         }
             catch (ex){
             console.log('Error in postReview API call', ex);

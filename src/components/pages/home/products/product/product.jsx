@@ -41,7 +41,8 @@ const Product = (props) => {
     
     const postToCart = async (shoppingCartItem) => {
         try{
-            await axios.post(`https://localhost:44394/api/shoppingcart`, shoppingCartItem);
+            const jwt = localStorage.getItem('token');
+            await axios.post(`https://localhost:44394/api/shoppingcart`, shoppingCartItem, { headers: {Authorization: 'Bearer ' + jwt}});
             history.push('/cart')
         }
         catch (ex){

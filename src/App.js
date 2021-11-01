@@ -86,7 +86,8 @@ class App extends Component {
 
   getProductsInCart = async () => {
     try{
-      let response = await axios.get(`https://localhost:44394/api/shoppingcart/${this.state.user.id}`);
+      const jwt = localStorage.getItem('token');
+      let response = await axios.get(`https://localhost:44394/api/shoppingcart/${this.state.user.id}`, { headers: {Authorization: 'Bearer ' + jwt}});
       this.setState({
         productsInCart: response.data
       })
@@ -98,7 +99,8 @@ class App extends Component {
 
   deleteProductInCart = async (productId) => {
     try{
-      await axios.delete(`https://localhost:44394/api/shoppingcart/product/${productId}/user/${this.state.user.id}`);
+      const jwt = localStorage.getItem('token');
+      await axios.delete(`https://localhost:44394/api/shoppingcart/product/${productId}/user/${this.state.user.id}`, { headers: {Authorization: 'Bearer ' + jwt}});
       this.getProductsInCart();
     }
     catch (ex){

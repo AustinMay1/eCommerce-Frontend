@@ -24,7 +24,8 @@ const Seller = () => {
     const createProduct = async (productObject) => {
         try{
             let newProduct = productObject;
-            await axios.post("https://localhost:44394/api/products", newProduct);
+            const jwt = localStorage.getItem('token');
+            await axios.post("https://localhost:44394/api/products", newProduct, { headers: {Authorization: 'Bearer ' + jwt}});
             history.push('/')
         }
             
