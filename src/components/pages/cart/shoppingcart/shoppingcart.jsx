@@ -43,13 +43,13 @@ const ShoppingCart = (props) => {
                                                     {product.product.description}
                                                 </div>
                                                 <div>
-                                                    ${product.product.price}
+                                                    Price: ${product.product.price}
                                                 </div>
                                                 <div>
-                                                    {product.product.category}
+                                                    Category: {product.product.category}
                                                 </div>
                                                 <div>
-                                                    Quantity{product.quantity}
+                                                    Quantity: {product.quantity}
                                                 </div>
                                                 <Link to ={{
                                                     pathname:'/postreview',
@@ -68,9 +68,9 @@ const ShoppingCart = (props) => {
                                     </div>
                                 )
                             })}
-                            <div className='card'>
-                                <p className='total'>Total:</p>
-                                {total}
+                            <div className='card product'>
+                                <h3 className='total'>Total:</h3>
+                                <h4>${total}</h4>
                             </div>
                         </div>
                     <div className='col-md-3 transparent-column' />

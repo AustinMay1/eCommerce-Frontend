@@ -21,16 +21,15 @@ html {
 .product {
   margin-top: 20px;
   margin-bottom: 20px;
+  padding: 20px;
 }
 
 .submit-div {
   float: right;
-  position: absolute;
 }
 
 .submit-button {
   float: right;
-  position: absolute;
   bottom: 0;
 }
 
