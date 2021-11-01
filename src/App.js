@@ -11,6 +11,7 @@ import Login from './components/pages/login/login';
 import Register from './components/pages/register/register';
 import Seller from './components/pages/Seller/Seller';
 import PostReview from './components/pages/cart/shoppingcart/postreview/postreview';
+import Logout from './components/pages/logout';
 //elements
 import Navbar from './components/elements/navbar/navbar';
 
@@ -151,6 +152,9 @@ class App extends Component {
           
 
           <Route path="/postreview" component={PostReview} />
+
+
+          <Route path="/logout" component={Logout} />
 
         </Switch>
 

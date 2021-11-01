@@ -55,7 +55,7 @@ const Navbar = ({user}) => {
                                     </NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink className="nav-link" onclick={() => localStorage.clear()} to="/">
+                                    <NavLink className="nav-link" to="/logout">
                                         Logout
                                     </NavLink>
                                 </li>
