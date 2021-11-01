@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 // import SearchBar from '../../pages/home/searchbar/searchbar';
 import './navbar.css';
 
@@ -28,7 +28,6 @@ const Navbar = ({user}) => {
                 <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                     {
                         <React.Fragment>
-                        {user && <h4>Welcome {user.username}</h4>}
                         {!user &&
                             <React.Fragment>
                                 <li className="nav-item">
@@ -56,7 +55,7 @@ const Navbar = ({user}) => {
                                     </NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink className="nav-link" to="/logout">
+                                    <NavLink className="nav-link" onclick={() => localStorage.clear()} to="/">
                                         Logout
                                     </NavLink>
                                 </li>

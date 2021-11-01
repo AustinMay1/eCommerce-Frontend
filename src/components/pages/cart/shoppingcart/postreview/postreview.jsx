@@ -2,11 +2,13 @@ import axios from 'axios';
 import React, { useEffect } from "react";
 // import { useForm, useFieldArray, Controller } from "./src";
 import useForm from '../../../../../hooks/useForm';
+import { useHistory } from "react-router-dom";
 
 
 const PostReview = (props) => {
 
     const { formValues, handleChange, handleSubmit } = useForm(submitReview)
+    const history = useHistory();
 
     function submitReview(){
         let ratingToInt = parseInt(formValues.rating);
@@ -16,6 +18,7 @@ const PostReview = (props) => {
             productId: props.location.postReviewProps.productId
         };
         postReview(review);
+        history.push('/cart')
     }
 
     const postReview = async (review) => {
