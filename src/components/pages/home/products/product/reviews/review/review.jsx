@@ -5,6 +5,7 @@ const Review = (props) => {
     return (
         <li>
             {props.review.content}
+            {props.review.rating}
         </li>
     )
 }

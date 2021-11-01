@@ -28,27 +28,40 @@ const Navbar = ({user}) => {
                 <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                     {
                         <React.Fragment>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/login">
-                                    Login
-                                </NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/seller">
-                                    List Product
-                                </NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/cart">
-                                    Shopping Cart
-                                </NavLink>
-                            </li>
-                            {/* <form className="d-flex" method="get" action={"/"}> */}
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/logout">
-                                    Logout
-                                </NavLink>
-                            </li>
+                        {user && <h4>Welcome {user.username}</h4>}
+                        {!user &&
+                            <React.Fragment>
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/login">
+                                        Login
+                                    </NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/register">
+                                        Register
+                                    </NavLink>
+                                </li>
+                            </React.Fragment>
+                        }
+                        {user &&
+                            <React.Fragment>
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/seller">
+                                        List Product
+                                    </NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/cart">
+                                        Shopping Cart
+                                    </NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/logout">
+                                        Logout
+                                    </NavLink>
+                                </li>
+                            </React.Fragment>
+                        }
                         </React.Fragment>
                     }
                 </ul>

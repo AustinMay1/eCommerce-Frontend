@@ -131,7 +131,7 @@ class App extends Component {
   render(){
     return (
       <Router>
-        <Navbar />
+        <Navbar user={this.state.user}/>
         
         <Switch>
 
